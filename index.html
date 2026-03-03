@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TM SkyRise Construction | Industrial & Residential Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.447.0/lucide.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .faq-item.active .minus-icon { display: block; }
+        .faq-item.active .plus-icon { display: none; }
+        .minus-icon { display: none; }
+
+        .service-card-img {
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover .service-card-img {
+            transform: scale(1.1);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #F27405; border-radius: 4px; }
+    </style>
+</head>
+<body class="text-white selection:bg-[#F27405] selection:text-white">
+
+    <!-- GLOBAL BACKGROUND VIDEO -->
+    <div class="fixed inset-0 w-full h-full z-0 pointer-events-none">
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+            <source src="background.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-slate-950/70 backdrop-brightness-75"></div>
+    </div>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="relative z-10">
+        
+        <!-- Top Bar -->
+        <div class="bg-black/40 backdrop-blur-md text-slate-300 py-3 px-4 hidden lg:block border-b border-white/5">
+            <div class="max-w-7xl mx-auto flex justify-between items-center text-xs tracking-widest uppercase font-bold">
+                <div class="flex space-x-8">
+                    <span class="flex items-center hover:text-[#F27405] transition-colors cursor-pointer">
+                        <i data-lucide="phone" class="w-3.5 h-3.5 mr-2 text-[#F27405]"></i> 062 125 8928
+                    </span>
+                    <span class="flex items-center hover:text-[#F27405] transition-colors cursor-pointer">
+                        <i data-lucide="mail" class="w-3.5 h-3.5 mr-2 text-[#F27405]"></i> info@skyriseconstruction.co.za
+                    </span>
+                </div>
+                <div class="flex items-center uppercase">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-2 text-[#F27405]"></i> Johannesburg, Gauteng
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav id="main-nav" class="sticky top-0 z-50 transition-all duration-500 bg-transparent py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <div class="flex items-center group cursor-pointer">
+                    <img src="logo.jpeg" alt="TM SkyRise Logo" class="h-14 w-auto mr-3 rounded-lg shadow-lg border border-white/10" onerror="this.style.display='none'">
+                    <div class="flex flex-col">
+                        <h1 class="text-2xl font-black tracking-tighter text-white leading-none uppercase italic">
+                            TM <span class="text-[#F27405]">SKYRISE</span>
+                        </h1>
+                        <p class="text-[9px] text-slate-400 font-bold tracking-[0.3em] uppercase mt-1">Construction & Projects</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-10 items-center font-bold text-sm tracking-widest uppercase">
+                    <a href="#" class="hover:text-[#F27405] transition-colors">Home</a>
+                    <a href="#about" class="hover:text-[#F27405] transition-colors">About Us</a>
+                    <a href="#services" class="hover:text-[#F27405] transition-colors">Services</a>
+                    <a href="#contact" class="bg-[#F27405] text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#F27405] transition-all">
+                        Contact
+                    </a>
+                </div>
+
+                <button class="md:hidden text-white" id="menu-toggle">
+                    <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glass-dark absolute top-full left-0 w-full p-8 space-y-4 font-bold uppercase tracking-widest text-center">
+                <a href="#" class="block py-2">Home</a>
+                <a href="#about" class="block py-2">About Us</a>
+                <a href="#services" class="block py-2">Services</a>
+                <a href="#contact" class="block py-2 text-[#F27405]">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="min-h-[85vh] flex items-center px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto w-full pt-10 pb-20">
+                <div class="max-w-3xl glass p-8 rounded-3xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="h-0.5 w-12 bg-[#F27405]"></div>
+                        <span class="text-[#F27405] font-black uppercase tracking-[0.4em] text-xs">Mastery in Every Layer</span>
+                    </div>
+                    <h1 class="text-5xl md:text-8xl font-black text-white mb-6 leading-[0.9] tracking-tighter uppercase italic drop-shadow-2xl">
+                        Elite <br>
+                        Construction <span class="text-[#F27405]">Solutions.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-100 mb-10 leading-relaxed font-medium max-w-xl">
+                        TM SkyRise Construction (Pty) Ltd is a premier construction firm providing end-to-end industrial, commercial, and residential services throughout Gauteng.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <a href="#contact" class="bg-[#F27405] text-white px-10 py-5 rounded-lg font-black text-lg text-center hover:bg-orange-600 transition-all flex items-center justify-center shadow-2xl shadow-orange-600/40 group">
+                            Request Your Quote <i data-lucide="chevron-right" class="ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-950/50">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#F27405]/10 rounded-full blur-3xl"></div>
+                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-none">
+                        Driven by <br><span class="text-[#F27405]">Integrity & Precision</span>
+                    </h2>
+                    <div class="space-y-6 text-slate-300 text-lg leading-relaxed">
+                        <p>Established with a vision to redefine the construction landscape in South Africa, <strong>TM SkyRise Construction</strong> has grown into a trusted name for complex infrastructure and high-end residential builds.</p>
+                        <p>Our company is built on the pillars of safety, quality, and reliability. As a Level 1 B-BBEE contributor and NHBRC accredited contractor, we ensure that every brick laid complies with the highest national standards.</p>
+                        <p>Whether it's a large-scale industrial warehouse or a luxury home renovation, our multidisciplinary team brings technical expertise and passion to the site every single day.</p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-12">
+                        <div class="text-center">
+                            <span class="block text-3xl font-black text-[#F27405]">100%</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Accredited</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="block text-3xl font-black text-[#F27405]">Level 1</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">B-BBEE</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="block text-3xl font-black text-[#F27405]">Elite</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Workmanship</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl group border border-white/10">
+                    <img src="Building New Projects.jpg" alt="Construction Site" class="w-full h-full object-cover min-h-[400px] group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <p class="text-white font-black text-2xl uppercase tracking-tighter italic">Building The Future</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-24 px-4 sm:px-6 lg:px-8 bg-black/30 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">Our <span class="text-[#F27405]">Expertise</span></h2>
+                    <div class="w-24 h-1.5 bg-[#F27405] mx-auto mb-6"></div>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Specialized construction services for every requirement</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="services-grid">
+                    <!-- Service cards will be generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-24 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">Frequently <span class="text-[#F27405]">Asked</span></h2>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Getting you ready for your next project</p>
+                </div>
+                <div class="space-y-4" id="faq-container">
+                    <!-- FAQ Items generated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-24 px-4 sm:px-6 lg:px-8 bg-black/10">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">Client <span class="text-[#F27405]">Testimonials</span></h2>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Real stories from our satisfied partners</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass p-8 rounded-3xl relative border-t border-white/10">
+                        <i data-lucide="quote" class="absolute top-6 right-6 text-[#F27405]/20 w-12 h-12"></i>
+                        <p class="text-slate-200 text-lg italic mb-8 leading-relaxed">"The project management team at TM SkyRise is exceptional. They completed our multi-unit development ahead of schedule and within the budget."</p>
+                        <div>
+                            <h4 class="font-black uppercase tracking-tighter text-white">Thabo Mokoena</h4>
+                            <p class="text-[#F27405] text-[10px] font-black uppercase tracking-[0.2em]">Property Developer</p>
+                        </div>
+                    </div>
+                    <div class="glass p-8 rounded-3xl relative border-t-2 border-[#F27405]">
+                        <i data-lucide="quote" class="absolute top-6 right-6 text-[#F27405]/20 w-12 h-12"></i>
+                        <p class="text-slate-200 text-lg italic mb-8 leading-relaxed">"Professionalism at its best. They assisted with everything from the initial plans to the final electrical COC. Highly recommended for home renovations."</p>
+                        <div>
+                            <h4 class="font-black uppercase tracking-tighter text-white">Elena Rodriguez</h4>
+                            <p class="text-[#F27405] text-[10px] font-black uppercase tracking-[0.2em]">Resident, Midrand</p>
+                        </div>
+                    </div>
+                    <div class="glass p-8 rounded-3xl relative border-t border-white/10">
+                        <i data-lucide="quote" class="absolute top-6 right-6 text-[#F27405]/20 w-12 h-12"></i>
+                        <p class="text-slate-200 text-lg italic mb-8 leading-relaxed">"Reliable, honest, and hardworking. TM SkyRise handled our industrial roofing repair with zero downtime for our operations."</p>
+                        <div>
+                            <h4 class="font-black uppercase tracking-tighter text-white">Gary van Wyk</h4>
+                            <p class="text-[#F27405] text-[10px] font-black uppercase tracking-[0.2em]">Warehouse Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 bg-black/40 border-y border-white/5">
+            <div class="max-w-5xl mx-auto">
+                <div class="glass-dark rounded-[2.5rem] p-10 lg:p-16 shadow-2xl">
+                    <div class="text-center mb-12">
+                        <span class="text-[#F27405] font-black uppercase tracking-[0.3em] text-sm mb-4 block">Request An Estimate</span>
+                        <h2 class="text-4xl font-black uppercase tracking-tighter">Ready to Start?</h2>
+                        <p class="text-slate-400 mt-4">Fill out the form below and our team will reach out within 24 hours.</p>
+                    </div>
+                    
+                    <form 
+                        action="https://formspree.io/f/xwvngprn" 
+                        method="POST" 
+                        id="contact-form"
+                        class="grid grid-cols-1 md:grid-cols-2 gap-8"
+                    >
+                        <input type="text" name="name" required placeholder="Full Name" class="w-full bg-white/5 border-b border-white/20 px-0 py-4 outline-none focus:border-[#F27405] transition-all font-bold text-lg text-white">
+                        <input type="email" name="email" required placeholder="Email Address" class="w-full bg-white/5 border-b border-white/20 px-0 py-4 outline-none focus:border-[#F27405] transition-all font-bold text-lg text-white">
+                        <input type="tel" name="phone" required placeholder="Phone Number" class="w-full bg-white/5 border-b border-white/20 px-0 py-4 outline-none focus:border-[#F27405] transition-all font-bold text-lg text-white">
+                        
+                        <div class="md:col-span-1">
+                           <select name="service_type" class="w-full bg-transparent border-b border-white/20 px-0 py-4 outline-none focus:border-[#F27405] transition-all font-bold text-lg text-white appearance-none">
+                                <option class="bg-slate-900" value="New Construction">New Construction</option>
+                                <option class="bg-slate-900" value="Renovations">Renovations & Alterations</option>
+                                <option class="bg-slate-900" value="Maintenance">Industrial Maintenance</option>
+                                <option class="bg-slate-900" value="Electrical/Plumbing">Electrical & Plumbing</option>
+                           </select>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <textarea name="message" required rows="2" placeholder="Tell us about your project..." class="w-full bg-white/5 border-b border-white/20 px-0 py-4 outline-none focus:border-[#F27405] transition-all font-bold text-lg text-white"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="md:col-span-2 bg-[#F27405] py-5 rounded-xl font-black uppercase tracking-widest text-lg shadow-xl shadow-orange-600/30 hover:bg-white hover:text-[#F27405] transition-all flex items-center justify-center gap-3">
+                            <span id="btn-text">Send Inquiry</span>
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+
+                    <!-- Success Message Box -->
+                    <div id="form-success" class="hidden text-center p-8 bg-green-500/20 border border-green-500/50 rounded-3xl mt-8">
+                        <div class="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check" class="text-white w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase tracking-tighter mb-2">Message Sent!</h3>
+                        <p class="text-slate-300">Thank you for reaching out. A consultant will contact you shortly.</p>
+                        <button onclick="location.reload()" class="mt-6 text-[#F27405] font-bold underline uppercase text-sm tracking-widest">Send another message</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black/90 backdrop-blur-xl pt-20 pb-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-12 mb-16">
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <img src="logo.jpeg" alt="TM SkyRise Logo" class="h-10 w-auto mr-3" onerror="this.style.display='none'">
+                            <h2 class="text-2xl font-black tracking-tighter uppercase text-white">TM <span class="text-[#F27405]">SkyRise</span></h2>
+                        </div>
+                        <p class="text-slate-400 text-sm">Gauteng's premier construction and project management firm. Building legacies through quality engineering and client-focused solutions.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.3em] text-[#F27405] mb-8">Navigation</h4>
+                        <ul class="space-y-4 text-slate-300 font-bold text-sm">
+                            <li><a href="#" class="hover:text-[#F27405] transition-colors">Home</a></li>
+                            <li><a href="#about" class="hover:text-[#F27405] transition-colors">About Us</a></li>
+                            <li><a href="#services" class="hover:text-[#F27405] transition-colors">Services</a></li>
+                            <li><a href="#contact" class="hover:text-[#F27405] transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.3em] text-[#F27405] mb-8">Location & Contact</h4>
+                        <ul class="space-y-4 text-slate-300 font-bold text-sm">
+                            <li class="flex items-center"><i data-lucide="phone" class="w-3.5 h-3.5 mr-2 text-[#F27405]"></i> 062 125 8928</li>
+                            <li class="flex items-center"><i data-lucide="mail" class="w-3.5 h-3.5 mr-2 text-[#F27405]"></i> info@skyriseconstruction.co.za</li>
+                            <li class="flex items-center"><i data-lucide="map-pin" class="w-3.5 h-3.5 mr-2 text-[#F27405]"></i> Kibler Park, JHB, Gauteng</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] pt-10 border-t border-white/5">
+                    <p>© 2026 TM SKYRISE CONSTRUCTION (PTY) LTD. REG: 2021/688321/07</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/27621258928" target="_blank" rel="noopener noreferrer" class="fixed bottom-8 right-8 z-[100]">
+        <div class="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.393 0 12.03c0 2.123.543 4.195 1.574 6.039L0 24l6.105-1.602a11.83 11.83 0 005.937 1.587h.005c6.635 0 12.032-5.396 12.036-12.034a11.82 11.82 0 00-3.626-8.526z"/>
+            </svg>
+        </div>
+    </a>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Data Definitions
+        const services = [
+            { title: "Building New Projects", desc: "Expert construction of industrial warehouses, commercial retail spaces, and luxury residential estates.", icon: "construction", img: "Building New Projects.jpg" },
+            { title: "Alterations & Renovations", desc: "Transform your current space with structural upgrades, high-end finishing, and modern floorplan shifts.", icon: "hammer", img: "Alterations & Renovations.jpg" },
+            { title: "Additions & Extensions", desc: "Expand your square footage with seamless structural additions that increase your property's value.", icon: "plus-circle", img: "Additions & Extensions.jpg" },
+            { title: "Double Story Construction", desc: "Technical mastery in vertical development, from foundation reinforcement to high-rise safety.", icon: "home", img: "Double Story Construction.jpg" },
+            { title: "Roofing & Waterproofing", desc: "State-of-the-art roofing systems, truss installations, and advanced industrial waterproofing solutions.", icon: "layers", img: "Roofing & Waterproofing.jpg" },
+            { title: "Certified Electrical", desc: "Industrial grid integration, residential solar backup, and COC-certified electrical infrastructure.", icon: "zap", img: "Certified Electrical.jpg" },
+            { title: "Plumbing Systems", desc: "Full-scale drainage engineering, high-pressure water systems, and luxury sanitary fittings.", icon: "droplets", img: "Plumbing Systems.jpg" },
+            { title: "Plans & Approvals", desc: "Professional architectural drafting and full management of municipal building plan submissions.", icon: "file-text", img: "Plans & Approvals.jpg" }
+        ];
+
+        const faqs = [
+            { question: "Is TM SkyRise Construction NHBRC registered?", answer: "Yes, we are fully registered with the NHBRC. This ensures all our residential builds carry a structural guarantee and comply with South Africa's strictest building codes." },
+            { question: "Do you handle the entire project from start to finish?", answer: "Yes, we provide turnkey solutions. This includes planning, material sourcing, construction, specialty trades (electrical/plumbing), and final hand-over with all legal certificates." },
+            { question: "Can you assist with building plan approvals?", answer: "Absolutely. We work with specialized architects to draft your vision and then manage the entire municipality submission process on your behalf to ensure legal compliance." },
+            { question: "What is your B-BBEE status?", answer: "TM SkyRise is a Level 1 B-BBEE contributor. We are committed to economic transformation and social upliftment within the South African construction sector." },
+            { question: "Do you offer industrial maintenance contracts?", answer: "Yes, we provide ongoing maintenance services for industrial facilities, including roofing repairs, electrical grid maintenance, and structural safety checks." }
+        ];
+
+        // Rendering logic
+        const servicesGrid = document.getElementById('services-grid');
+        services.forEach(service => {
+            const card = document.createElement('div');
+            card.className = "service-card glass rounded-3xl overflow-hidden group shadow-xl border border-white/5";
+            card.innerHTML = `
+                <div class="h-48 overflow-hidden relative">
+                    <img src="${service.img}" alt="${service.title}" class="service-card-img w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1503387762-592fec0a4f5b?auto=format&fit=crop&q=80&w=600'">
+                    <div class="absolute top-4 left-4 bg-[#F27405] p-3 rounded-xl shadow-lg">
+                        <i data-lucide="${service.icon}" class="w-6 h-6 text-white"></i>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-xl font-black mb-4 uppercase tracking-tighter group-hover:text-[#F27405] transition-colors">${service.title}</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">${service.desc}</p>
+                </div>
+            `;
+            servicesGrid.appendChild(card);
+        });
+
+        const faqContainer = document.getElementById('faq-container');
+        faqs.forEach((faq, idx) => {
+            const item = document.createElement('div');
+            item.className = "faq-item glass rounded-2xl overflow-hidden border border-white/5";
+            item.innerHTML = `
+                <button class="w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors faq-btn">
+                    <span class="text-lg font-bold tracking-tight pr-4">${faq.question}</span>
+                    <i data-lucide="plus" class="plus-icon text-[#F27405] shrink-0"></i>
+                    <i data-lucide="minus" class="minus-icon text-[#F27405] shrink-0"></i>
+                </button>
+                <div class="faq-content">
+                    <p class="p-6 pt-0 text-slate-300 leading-relaxed border-t border-white/5 bg-black/20">
+                        ${faq.answer}
+                    </p>
+                </div>
+            `;
+            faqContainer.appendChild(item);
+        });
+
+        // Formspree AJAX submission to stay on page
+        const form = document.getElementById("contact-form");
+        const submitBtn = document.getElementById("submit-btn");
+        const btnText = document.getElementById("btn-text");
+        const successBox = document.getElementById("form-success");
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            btnText.innerHTML = "Sending...";
+            submitBtn.disabled = true;
+            
+            const data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    successBox.classList.remove('hidden');
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Oops! There was a problem submitting your form");
+                        }
+                    })
+                }
+            }).catch(error => {
+                alert("Oops! There was a problem submitting your form");
+            }).finally(() => {
+                btnText.innerHTML = "Send Inquiry";
+                submitBtn.disabled = false;
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+
+        // Re-run Lucide for dynamic elements
+        lucide.createIcons();
+
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        // Scroll Handling
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-slate-900/90', 'backdrop-blur-2xl', 'py-2', 'border-b', 'border-white/10');
+                nav.classList.remove('bg-transparent', 'py-4');
+            } else {
+                nav.classList.remove('bg-slate-900/90', 'backdrop-blur-2xl', 'py-2', 'border-b', 'border-white/10');
+                nav.classList.add('bg-transparent', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
